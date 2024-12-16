@@ -1,0 +1,11 @@
+.wrapper {
+  height: 80px;
+  background-color: burlywood;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.6rem;
+}
