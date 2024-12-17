@@ -3,15 +3,20 @@ import cookie from "js-cookie";
 import axios from "axios";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
+import Button from "../Button/Button";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isError, setError] = useState(false);
+  const [isLoggingIn, setLoggingIn] = useState(false);
 
   const router = useRouter();
 
   const onLogin = async () => {
     try {
+      setLoggingIn(true);
+
       const userData = {
         email: email,
         password: password,
@@ -23,18 +28,27 @@ const LoginForm = () => {
       );
 
       if (response.status === 200) {
+        setLoggingIn(false);
+        setError(false);
         cookie.set("jwt_token", response.data.token);
         router.push("/");
       }
 
       console.log(response);
     } catch (err) {
+      setLoggingIn(false);
+      if (err.status === 401) {
+        console.log("Login failed");
+        setError(true);
+      }
+
       console.log(err);
     }
   };
 
   return (
     <div className={styles.wrapper}>
+      <h1>Login</h1>
       <input
         type="email"
         placeholder="email"
@@ -49,7 +63,8 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={onLogin}>Login</button>
+      <Button title="Login" onClick={onLogin} isLoading={isLoggingIn} />
+      <div>{isError && <>Login failed</>}</div>
     </div>
   );
 };

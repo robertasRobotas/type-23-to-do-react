@@ -4,7 +4,7 @@
   gap: 1rem;
   width: 60%;
   margin: auto;
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 
 .wrapper input {
@@ -16,4 +16,9 @@
   padding: 0.6rem;
   border-radius: 0.3rem;
   cursor: pointer;
+}
+
+.wrapper h1 {
+  text-align: center;
+  font-weight: 500;
 }
