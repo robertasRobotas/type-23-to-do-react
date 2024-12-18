@@ -4,8 +4,80 @@
   padding: 0 2rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .title {
   font-size: 1.6rem;
+}
+
+.wrapper nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.wrapper nav ul li a {
+  text-decoration: none;
+}
+
+.wrapper button {
+  all: unset;
+  cursor: pointer;
+  width: 2rem;
+
+  display: none;
+}
+
+.wrapper button img {
+  width: 100%;
+}
+
+.overlay {
+  position: fixed;
+  background-color: cadetblue;
+  height: calc(100vh - 80px);
+  width: 100%;
+  left: 1000px;
+  top: 80px;
+  transition: 0.5s;
+
+  display: none;
+}
+
+.overlayOpen {
+  left: 0px;
+}
+
+.mobileNav ul {
+  flex-direction: column;
+  margin-top: 4rem;
+}
+
+.mobileNav ul li {
+  display: flex;
+  justify-content: center;
+}
+
+.mobileNav ul li a {
+  font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    position: sticky;
+    top: 0px;
+  }
+
+  .wrapper button {
+    display: inline-block;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+
+  .overlay {
+    display: inline-block;
+  }
 }
