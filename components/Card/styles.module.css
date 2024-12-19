@@ -1,8 +1,13 @@
-.wrapper {
+.link {
+  width: 400px;
+  text-decoration: none;
+  color: black;
+}
+
+.card {
   background-color: rgb(230, 230, 230);
   text-align: center;
   font-size: 1.4rem;
-  width: 50%;
   padding: 2rem;
   border-radius: 0.4rem;
 }

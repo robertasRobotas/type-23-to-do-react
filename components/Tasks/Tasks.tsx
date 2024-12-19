@@ -13,6 +13,7 @@ const Tasks = ({ tasks }: TasksProps) => {
       {tasks.map((task) => {
         return (
           <Card
+            id={task.id}
             key={task.id}
             title={task.title}
             status={task.status}

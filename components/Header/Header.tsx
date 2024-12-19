@@ -5,8 +5,6 @@ import burgerBtn from "../../assets/img/burger-btn.svg";
 const Header = () => {
   const [isBurgerButtonClicked, setBurgerButtonClicked] = useState(false);
 
-  console.log(isBurgerButtonClicked);
-
   const navbar = (
     <ul>
       <li>
