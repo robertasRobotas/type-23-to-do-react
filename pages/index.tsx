@@ -5,6 +5,7 @@ import cookie from "js-cookie";
 import Tasks from "@/components/Tasks/Tasks";
 import { Task } from "@/types/task";
 import { useRouter } from "next/router";
+import Footer from "@/components/Footer/Footer";
 
 const MainPage = () => {
   const router = useRouter();
@@ -43,6 +44,7 @@ const MainPage = () => {
     <div>
       <Header />
       <Tasks tasks={tasks} />
+      <Footer />
     </div>
   );
 };

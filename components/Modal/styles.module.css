@@ -1,0 +1,54 @@
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.424);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+.modal {
+  width: 50%;
+  min-width: 400px;
+  background-color: rgb(241, 231, 218);
+  border-radius: 1rem;
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.4rem;
+}
+
+.removeIcon {
+  all: unset;
+  width: 1.4rem;
+  cursor: pointer;
+}
+
+.removeIcon img {
+  width: 100%;
+}
+
+.buttnsWrapper {
+  display: flex;
+  padding-top: 2rem;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn {
+  padding: 0.6rem;
+}
+
+.danger {
+  background-color: brown;
+}

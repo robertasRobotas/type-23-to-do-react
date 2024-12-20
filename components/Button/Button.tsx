@@ -5,11 +5,12 @@ type ButtonType = {
   title: string;
   isLoading: boolean;
   onClick: () => void;
+  className?: string;
 };
 
-const Button = ({ title, isLoading, onClick }: ButtonType) => {
+const Button = ({ title, isLoading, onClick, className }: ButtonType) => {
   return (
-    <button className={styles.wrapper} onClick={onClick}>
+    <button className={`${styles.wrapper} ${className}`} onClick={onClick}>
       {isLoading ? <div className={styles.loader}></div> : <span>{title}</span>}
     </button>
   );

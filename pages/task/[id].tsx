@@ -6,10 +6,13 @@ import styles from "./styles.module.css";
 import Header from "@/components/Header/Header";
 import { Task } from "@/types/task";
 import Button from "@/components/Button/Button";
+import Modal from "@/components/Modal/Modal";
 
 const TaskPage = () => {
   const [task, setTask] = useState<Task | null>(null);
   const [isLoading, setLoading] = useState<boolean>(false);
+
+  const [isShowDeleteModal, setShowDeleteModal] = useState(false);
 
   const router = useRouter();
 
@@ -47,6 +50,20 @@ const TaskPage = () => {
     }
   };
 
+  const deleteTask = async (id: string) => {
+    try {
+      const response = await axios.delete(`http://localhost:3002/tasks/${id}`, {
+        headers,
+      });
+
+      if (response.status === 200) {
+        router.push("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (router.query.id) {
       fetchTask(router.query.id as string);
@@ -70,9 +87,25 @@ const TaskPage = () => {
                 switchTaskStatus(router.query.id as string);
               }}
             />
+
+            <Button
+              isLoading={isLoading}
+              title={"Delete task"}
+              className={styles.dangerBtn}
+              onClick={() => {
+                setShowDeleteModal(true);
+              }}
+            />
           </>
         )}
       </section>
+
+      <Modal
+        title=" Do you really want to delete task"
+        isOpen={isShowDeleteModal}
+        onCloseModal={() => setShowDeleteModal(false)}
+        onConfirm={() => deleteTask(router.query.id as string)}
+      />
     </div>
   );
 };
