@@ -11,6 +11,11 @@
   font-size: 1.6rem;
 }
 
+.title a {
+  text-decoration: none;
+  color: black;
+}
+
 .wrapper nav ul {
   list-style: none;
   display: flex;
@@ -61,6 +66,15 @@
 
 .mobileNav ul li a {
   font-size: 1.2rem;
+}
+
+.logoutBtn {
+  display: inline-block !important;
+  width: 20px !important;
+}
+
+.logoutBtn img {
+  width: 100%;
 }
 
 @media only screen and (max-width: 768px) {

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import cookie from "js-cookie";
 import { useRouter } from "next/router";
 import styles from "./styles.module.css";
-import Header from "@/components/Header/Header";
 import { Task } from "@/types/task";
 import Button from "@/components/Button/Button";
 import Modal from "@/components/Modal/Modal";
+import PageTemplate from "@/components/PageTamplate/PageTemplate";
+import { deleteTaskById, getTaskById, updateTaskStatus } from "@/api/task";
 
 const TaskPage = () => {
   const [task, setTask] = useState<Task | null>(null);
@@ -16,23 +15,14 @@ const TaskPage = () => {
 
   const router = useRouter();
 
-  const headers = {
-    authorization: cookie.get("jwt_token"),
-  };
-
   const switchTaskStatus = async (id: string) => {
     const body = {
       status: !task?.status,
     };
 
     setLoading(true);
-    const response = await axios.put(
-      `http://localhost:3002/tasks/${id}`,
-      body,
-      {
-        headers,
-      }
-    );
+
+    const response = await updateTaskStatus(id, body);
 
     setLoading(false);
     setTask(response.data.task);
@@ -40,10 +30,7 @@ const TaskPage = () => {
 
   const fetchTask = async (id: string) => {
     try {
-      const response = await axios.get(`http://localhost:3002/tasks/${id}`, {
-        headers,
-      });
-
+      const response = await getTaskById(id);
       setTask(response.data.task);
     } catch (err) {
       console.log(err);
@@ -52,10 +39,7 @@ const TaskPage = () => {
 
   const deleteTask = async (id: string) => {
     try {
-      const response = await axios.delete(`http://localhost:3002/tasks/${id}`, {
-        headers,
-      });
-
+      const response = await deleteTaskById(id);
       if (response.status === 200) {
         router.push("/");
       }
@@ -71,9 +55,7 @@ const TaskPage = () => {
   }, [router.query.id]);
 
   return (
-    <div>
-      <Header />
-
+    <PageTemplate>
       <section className={styles.content}>
         {task && (
           <>
@@ -106,7 +88,7 @@ const TaskPage = () => {
         onCloseModal={() => setShowDeleteModal(false)}
         onConfirm={() => deleteTask(router.query.id as string)}
       />
-    </div>
+    </PageTemplate>
   );
 };
 

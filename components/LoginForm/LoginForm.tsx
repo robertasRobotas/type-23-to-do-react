@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import cookie from "js-cookie";
-import axios from "axios";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
 import Button from "../Button/Button";
+import { loginUser } from "@/api/user";
+import { AxiosError } from "axios";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -22,10 +23,7 @@ const LoginForm = () => {
         password: password,
       };
 
-      const response = await axios.post(
-        "http://localhost:3002/login",
-        userData
-      );
+      const response = await loginUser(userData);
 
       if (response.status === 200) {
         setLoggingIn(false);
@@ -36,8 +34,9 @@ const LoginForm = () => {
 
       console.log(response);
     } catch (err) {
+      const error = err as AxiosError;
       setLoggingIn(false);
-      if (err.status === 401) {
+      if (error.status === 401) {
         console.log("Login failed");
         setError(true);
       }

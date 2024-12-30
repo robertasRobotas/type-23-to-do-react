@@ -1,13 +1,12 @@
-import Header from "@/components/Header/Header";
+import PageTemplate from "@/components/PageTamplate/PageTemplate";
 import TaskForm from "@/components/TaskForm/TaskForm";
 import React from "react";
 
 const InsertPage = () => {
   return (
-    <div>
-      <Header />
+    <PageTemplate>
       <TaskForm />
-    </div>
+    </PageTemplate>
   );
 };
 

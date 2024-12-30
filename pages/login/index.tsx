@@ -1,13 +1,12 @@
-import Header from "@/components/Header/Header";
 import LoginForm from "@/components/LoginForm/LoginForm";
+import PageTemplate from "@/components/PageTamplate/PageTemplate";
 import React from "react";
 
 const LoginPage = () => {
   return (
-    <div>
-      <Header />
+    <PageTemplate>
       <LoginForm />
-    </div>
+    </PageTemplate>
   );
 };
 

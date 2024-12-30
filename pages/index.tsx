@@ -1,11 +1,10 @@
-import Header from "@/components/Header/Header";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
-import cookie from "js-cookie";
 import Tasks from "@/components/Tasks/Tasks";
 import { Task } from "@/types/task";
 import { useRouter } from "next/router";
-import Footer from "@/components/Footer/Footer";
+import PageTemplate from "@/components/PageTamplate/PageTemplate";
+import { getAllTasks } from "@/api/task";
 
 const MainPage = () => {
   const router = useRouter();
@@ -14,13 +13,7 @@ const MainPage = () => {
 
   const fetchTasks = async () => {
     try {
-      const headers = {
-        authorization: cookie.get("jwt_token"),
-      };
-
-      const response = await axios.get("http://localhost:3002/tasks", {
-        headers,
-      });
+      const response = await getAllTasks();
 
       setTasks(response.data.tasks);
 
@@ -41,11 +34,9 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div>
-      <Header />
+    <PageTemplate>
       <Tasks tasks={tasks} />
-      <Footer />
-    </div>
+    </PageTemplate>
   );
 };
 
