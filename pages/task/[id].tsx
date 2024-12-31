@@ -6,6 +6,8 @@ import Button from "@/components/Button/Button";
 import Modal from "@/components/Modal/Modal";
 import PageTemplate from "@/components/PageTamplate/PageTemplate";
 import { deleteTaskById, getTaskById, updateTaskStatus } from "@/api/task";
+import completedImg from "../../assets/img/completed.svg";
+import notCompletedImg from "../../assets/img/not-completed.svg";
 
 const TaskPage = () => {
   const [task, setTask] = useState<Task | null>(null);
@@ -60,24 +62,36 @@ const TaskPage = () => {
         {task && (
           <>
             <h1>{task.title}</h1>
-            <h2>{task.points}</h2>
-            <h2>{task.status ? <>Completed</> : <>Not completed</>}</h2>
-            <Button
-              isLoading={isLoading}
-              title={task.status ? "mark as incompleted" : "mark as completed"}
-              onClick={() => {
-                switchTaskStatus(router.query.id as string);
-              }}
-            />
+            <h2 className={styles.points}>{task.points}</h2>
 
-            <Button
-              isLoading={isLoading}
-              title={"Delete task"}
-              className={styles.dangerBtn}
-              onClick={() => {
-                setShowDeleteModal(true);
-              }}
-            />
+            <div className={styles.statusWrapper}>
+              {task.status ? (
+                <img src={completedImg.src} alt="completed mark" />
+              ) : (
+                <img src={notCompletedImg.src} alt="completed mark" />
+              )}
+            </div>
+
+            <div className={styles.buttonWrapper}>
+              <Button
+                isLoading={isLoading}
+                title={
+                  task.status ? "mark as incompleted" : "mark as completed"
+                }
+                onClick={() => {
+                  switchTaskStatus(router.query.id as string);
+                }}
+              />
+
+              <Button
+                isLoading={isLoading}
+                title={"Delete task"}
+                className={styles.dangerBtn}
+                onClick={() => {
+                  setShowDeleteModal(true);
+                }}
+              />
+            </div>
           </>
         )}
       </section>

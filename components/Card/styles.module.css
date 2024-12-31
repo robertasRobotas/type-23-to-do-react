@@ -1,20 +1,33 @@
 .link {
-  width: 400px;
   text-decoration: none;
   color: black;
+  width: 100%;
 }
 
 .card {
+  display: flex;
+  gap: 1rem;
   background-color: rgb(250, 250, 250);
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
     rgba(17, 17, 26, 0.1) 0px 0px 8px;
-  text-align: center;
   font-size: 1.4rem;
   padding: 2rem;
   border-radius: 0.4rem;
   transition: 0.3s;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
 .card:hover {
   scale: 1.03;
+}
+
+.card img {
+  width: 1.2rem;
+}
+
+@media only screen and (max-width: 769px) {
+  .card {
+    font-size: 1.4rem;
+  }
 }

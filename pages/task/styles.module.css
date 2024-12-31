@@ -7,7 +7,13 @@
 }
 
 .content h1 {
-  font-size: 3rem;
+  font-size: 5rem;
+  transition: 0.3s;
+}
+
+.points {
+  font-size: 5rem;
+  transition: 0.3s;
 }
 
 .content button {
@@ -16,7 +22,30 @@
 }
 
 .dangerBtn {
-  background-color: rgb(147, 67, 67) !important;
+  background-color: rgb(199, 117, 117) !important;
   color: white;
   font-weight: 600;
+}
+
+.statusWrapper {
+  width: 4rem;
+}
+
+.statusWrapper img {
+  width: 100%;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 2rem;
+}
+
+@media only screen and (max-width: 769px) {
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .points {
+    font-size: 3rem;
+  }
 }

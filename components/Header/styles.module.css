@@ -1,14 +1,16 @@
 .wrapper {
-  height: 80px;
-  background-color: burlywood;
-  padding: 0 2rem;
+  height: 100px;
+  /* padding: 0 2rem; */
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid rgb(199, 199, 199);
+  margin: 0 2rem;
 }
 
 .title {
   font-size: 1.6rem;
+  font-weight: 600;
 }
 
 .title a {
@@ -24,6 +26,7 @@
 
 .wrapper nav ul li a {
   text-decoration: none;
+  color: black;
 }
 
 .wrapper button {
@@ -40,7 +43,7 @@
 
 .overlay {
   position: fixed;
-  background-color: cadetblue;
+  background-color: rgb(238, 238, 238);
   height: calc(100vh - 80px);
   width: 100%;
   left: 1000px;
@@ -70,11 +73,15 @@
 
 .logoutBtn {
   display: inline-block !important;
-  width: 20px !important;
+  width: 30px !important;
 }
 
 .logoutBtn img {
   width: 100%;
+}
+
+.desktopNav ul {
+  align-items: center;
 }
 
 @media only screen and (max-width: 768px) {

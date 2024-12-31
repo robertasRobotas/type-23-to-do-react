@@ -1,9 +1,9 @@
 .wrapper {
-  height: 80px;
-  background-color: burlywood;
-  padding: 0 2rem;
+  height: 100px;
+  margin: 0 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 3rem;
+  border-top: 1px solid rgb(199, 199, 199);
 }
