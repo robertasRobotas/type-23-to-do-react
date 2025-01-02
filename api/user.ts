@@ -6,7 +6,7 @@ type UserCredentials = {
 };
 
 export const loginUser = async (userData: UserCredentials) => {
-  const response = await axios.post("http://localhost:3002/login", userData);
+  const response = await axios.post(`${process.env.BASE_URL}/login`, userData);
 
   return response;
 };

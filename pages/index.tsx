@@ -1,4 +1,5 @@
 import { AxiosError } from "axios";
+import cookie from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Tasks from "@/components/Tasks/Tasks";
 import { Task } from "@/types/task";
@@ -10,6 +11,7 @@ const MainPage = () => {
   const router = useRouter();
 
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [initialLoading, setInitialLoading] = useState(true);
 
   const fetchTasks = async () => {
     try {
@@ -29,9 +31,19 @@ const MainPage = () => {
     }
   };
 
+  const token = cookie.get("jwt_token");
+
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    if (token) {
+      fetchTasks();
+    }
+
+    if (!token && !initialLoading) {
+      router.push("/login");
+    }
+
+    setInitialLoading(false);
+  }, [token]);
 
   return (
     <PageTemplate>

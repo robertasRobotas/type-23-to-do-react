@@ -31,8 +31,6 @@ const LoginForm = () => {
         cookie.set("jwt_token", response.data.token);
         router.push("/");
       }
-
-      console.log(response);
     } catch (err) {
       const error = err as AxiosError;
       setLoggingIn(false);

@@ -8,7 +8,9 @@ const headers = {
 };
 
 export const getAllTasks = async () => {
-  const response = await axios.get("http://localhost:3002/tasks", {
+  console.log("hitttt");
+  console.log(headers);
+  const response = await axios.get(`${process.env.BASE_URL}/tasks`, {
     headers,
   });
 
@@ -16,7 +18,7 @@ export const getAllTasks = async () => {
 };
 
 export const getTaskById = async (id: string) => {
-  const response = await axios.get(`http://localhost:3002/tasks/${id}`, {
+  const response = await axios.get(`${process.env.BASE_URL}/tasks/${id}`, {
     headers,
   });
 
@@ -24,7 +26,7 @@ export const getTaskById = async (id: string) => {
 };
 
 export const deleteTaskById = async (id: string) => {
-  const response = await axios.delete(`http://localhost:3002/tasks/${id}`, {
+  const response = await axios.delete(`${process.env.BASE_URL}/tasks/${id}`, {
     headers,
   });
 
@@ -32,9 +34,13 @@ export const deleteTaskById = async (id: string) => {
 };
 
 export const updateTaskStatus = async (id: string, body: object) => {
-  const response = await axios.put(`http://localhost:3002/tasks/${id}`, body, {
-    headers,
-  });
+  const response = await axios.put(
+    `${process.env.BASE_URL}/tasks/${id}`,
+    body,
+    {
+      headers,
+    }
+  );
 
   return response;
 };
