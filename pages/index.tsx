@@ -11,11 +11,12 @@ const MainPage = () => {
   const router = useRouter();
 
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [initialLoading, setInitialLoading] = useState(true);
 
   const fetchTasks = async () => {
+    const token = cookie.get("jwt_token");
+
     try {
-      const response = await getAllTasks();
+      const response = await getAllTasks(token as string);
 
       setTasks(response.data.tasks);
 
@@ -31,19 +32,9 @@ const MainPage = () => {
     }
   };
 
-  const token = cookie.get("jwt_token");
-
   useEffect(() => {
-    if (token) {
-      fetchTasks();
-    }
-
-    if (!token && !initialLoading) {
-      router.push("/login");
-    }
-
-    setInitialLoading(false);
-  }, [token]);
+    fetchTasks();
+  }, []);
 
   return (
     <PageTemplate>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import cookie from "js-cookie";
+
 import styles from "./styles.module.css";
 import { Task } from "@/types/task";
 import Button from "@/components/Button/Button";
@@ -18,21 +20,25 @@ const TaskPage = () => {
   const router = useRouter();
 
   const switchTaskStatus = async (id: string) => {
+    const token = cookie.get("jwt_token") as string;
+
     const body = {
       status: !task?.status,
     };
 
     setLoading(true);
 
-    const response = await updateTaskStatus(id, body);
+    const response = await updateTaskStatus(id, body, token);
 
     setLoading(false);
     setTask(response.data.task);
   };
 
   const fetchTask = async (id: string) => {
+    const token = cookie.get("jwt_token") as string;
+
     try {
-      const response = await getTaskById(id);
+      const response = await getTaskById(id, token);
       setTask(response.data.task);
     } catch (err) {
       console.log(err);
@@ -40,8 +46,10 @@ const TaskPage = () => {
   };
 
   const deleteTask = async (id: string) => {
+    const token = cookie.get("jwt_token") as string;
+
     try {
-      const response = await deleteTaskById(id);
+      const response = await deleteTaskById(id, token);
       if (response.status === 200) {
         router.push("/");
       }

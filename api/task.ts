@@ -1,15 +1,10 @@
-import cookie from "js-cookie";
 import axios from "axios";
 
-const token = cookie.get("jwt_token");
+export const getAllTasks = async (token: string) => {
+  const headers = {
+    authorization: token || "",
+  };
 
-const headers = {
-  authorization: token || "",
-};
-
-export const getAllTasks = async () => {
-  console.log("hitttt");
-  console.log(headers);
   const response = await axios.get(`${process.env.BASE_URL}/tasks`, {
     headers,
   });
@@ -17,7 +12,10 @@ export const getAllTasks = async () => {
   return response;
 };
 
-export const getTaskById = async (id: string) => {
+export const getTaskById = async (id: string, token: string) => {
+  const headers = {
+    authorization: token || "",
+  };
   const response = await axios.get(`${process.env.BASE_URL}/tasks/${id}`, {
     headers,
   });
@@ -25,7 +23,10 @@ export const getTaskById = async (id: string) => {
   return response;
 };
 
-export const deleteTaskById = async (id: string) => {
+export const deleteTaskById = async (id: string, token: string) => {
+  const headers = {
+    authorization: token || "",
+  };
   const response = await axios.delete(`${process.env.BASE_URL}/tasks/${id}`, {
     headers,
   });
@@ -33,7 +34,14 @@ export const deleteTaskById = async (id: string) => {
   return response;
 };
 
-export const updateTaskStatus = async (id: string, body: object) => {
+export const updateTaskStatus = async (
+  id: string,
+  body: object,
+  token: string
+) => {
+  const headers = {
+    authorization: token || "",
+  };
   const response = await axios.put(
     `${process.env.BASE_URL}/tasks/${id}`,
     body,

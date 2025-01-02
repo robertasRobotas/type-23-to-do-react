@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: false,
   env: {
-    BASE_URL: "https://to-do-api-88ux.onrender.com",
+    BASE_URL: "http://localhost:3002",
   },
 };
 
